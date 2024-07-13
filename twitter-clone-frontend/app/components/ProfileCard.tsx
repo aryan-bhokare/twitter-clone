@@ -1,0 +1,38 @@
+"use client";
+import React from "react";
+import { useGetCurrentUser } from "../hooks/user";
+import Image from "next/image";
+import { FiMoreHorizontal } from "react-icons/fi";
+import { log } from "console";
+
+export const ProfileCard: React.FC<React.HTMLAttributes<HTMLDivElement>> = (
+    props
+) => {
+    const { user } = useGetCurrentUser();
+    console.log(user);
+
+    return (
+        user &&
+        user?.profileImageURL && (
+            <div className={props.className}>
+                <Image
+                    src={user?.profileImageURL}
+                    height={50}
+                    width={50}
+                    alt="profile image"
+                    className="rounded-full p-1"
+                />
+
+                <div className="flex-col">
+                    <div>
+                        {user.firstName} {user.lastName}
+                    </div>
+                    <p className="text-gray-600">@ARYAN BHOKARE</p>
+                </div>
+                <div className="h-full ml-4">
+                    <FiMoreHorizontal />
+                </div>
+            </div>
+        )
+    );
+};
