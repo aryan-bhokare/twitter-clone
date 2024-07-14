@@ -24,7 +24,7 @@ export const LoginButton = ({ children }: { children: React.ReactNode }) => {
                 toast.success("Login Successful");
                 localStorage.setItem("token", verifyGoogleToken);
             }
-            await queryClient.invalidateQueries(["getCurrentUser"]);
+            await queryClient.invalidateQueries({ queryKey: ["getCurrentUser"] });
         },
         [queryClient]
     );

@@ -1,10 +1,12 @@
-import Image from "next/image";
-import FeedCard from "./components/Feedbar";
+import { Feed } from "./components/Feed";
+import FeedCard from "./components/FeedCard";
+import { TweetModal } from "./components/TweetModal";
 
 export default function Home() {
 	return (
 		<main>
-			<FeedCard />
+			<TweetModal />
+			<Feed />
 		</main>
 	);
 }
