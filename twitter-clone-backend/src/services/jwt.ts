@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
 import JWT from "jsonwebtoken";
-import { JWTUser } from "../../interfaces";
+import { JWTUser } from "../interfaces";
 
 const JWTSercret = "AV/2wUATkH/oLCNynL2XgQ==";
 export class JWTService {

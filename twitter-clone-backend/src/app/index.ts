@@ -3,10 +3,12 @@ import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import bodyParser from "body-parser";
 import { prismaClient } from "../client/db";
-import { User } from "./user";
 import cors from "cors";
-import { JWTService } from "./services/jwt";
+import { JWTService } from "../services/jwt";
 import { GraphQLContext } from "../interfaces";
+
+import { User } from "./user";
+import { Tweet } from "./tweets";
 
 async function testConnection() {
     try {
@@ -30,14 +32,25 @@ export async function initServer() {
     const graphqlServer = new ApolloServer<GraphQLContext>({
         typeDefs: `
             ${User.types}
+            ${Tweet.types}
             type Query {
                 ${User.queries}
+                ${Tweet.queries}
+			}
+			type Mutation{
+				${Tweet.mutations}
             }
         `,
         resolvers: {
             Query: {
                 ...User.resolvers.queries,
+                ...Tweet.resolvers.queries,
             },
+            Mutation: {
+                ...Tweet.resolvers.mutations,
+            },
+            ...Tweet.resolvers.extraResolvers,
+            ...User.resolvers.extraResolvers,
         },
     });
 
