@@ -10,7 +10,7 @@ import { RiFileList2Line } from "react-icons/ri";
 import { FiUsers } from "react-icons/fi";
 import { VscVerified } from "react-icons/vsc";
 import { CgMoreO } from "react-icons/cg";
-import { ProfileCard } from "./ProfileCard";
+import { ProfileCard } from "./ProfileButton";
 
 type sidebarElementType = {
 	icon: JSX.Element;
@@ -31,30 +31,32 @@ const sidebarElements: sidebarElementType[] = [
 
 const Sidebar: FC<React.HTMLAttributes<HTMLDivElement>> = ({ className }) => {
 	return (
-		<div className={`${className} p-2 pr-4 relative`}>
-			<div className="px-2">
-				<div className="text-3xl p-2 mb-2 hover:bg-gray-900 w-max rounded-full transition-all">
+		<nav
+			className={`${className} fixed bottom-0 flex w-full items-center border-t border-t-gray-600 p-2 md:relative md:flex md:flex-col md:border-t-0 lg:items-end`}
+		>
+			<div className="w-full md:w-fit">
+				<div className="mb-2 hidden w-max rounded-full p-2 text-3xl transition-all hover:bg-gray-900 md:block">
 					<BsTwitter />
 				</div>
-				<div className="menuContainer">
+				<ul className="menuContainer flex justify-around py-1 md:block">
 					{sidebarElements.map((element) => (
-						<div
+						<li
 							key={element.text}
-							className="flex gap-5 my-4 p-2 hover:bg-gray-900 w-max rounded-full items-center transition-all"
+							className="flex w-max cursor-pointer items-center justify-evenly gap-5 rounded-full p-2 transition-all  hover:bg-gray-900 md:my-4"
 						>
 							<span className="text-2xl">{element.icon}</span>
-							<span className="text-xl font-medium">{element.text}</span>
-						</div>
+							<span className="hidden text-xl font-medium lg:block">
+								{element.text}
+							</span>
+						</li>
 					))}
-				</div>
+				</ul>
+				<button className="hidden h-12 w-full max-w-[56rem] rounded-full bg-blue-500 py-2 font-medium text-white lg:block">
+					Post
+				</button>
 			</div>
-			<button className="w-56 text-white bg-blue-500 rounded-full py-2 h-12 font-medium">
-				Post
-			</button>
-			<ProfileCard className="absolute bottom-0 flex gap-2 mb-4 w-full items-center" />
-
-
-		</div>
+			<ProfileCard className="absolute bottom-0 right-0 mb-4 hidden w-full max-w-fit items-center gap-2 md:flex" />
+		</nav>
 	);
 };
 

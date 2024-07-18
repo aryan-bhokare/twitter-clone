@@ -1,12 +1,10 @@
-
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Sidebar from "./components/Sidebar";
 import { AuthProvider } from "./providers/AuthProvider";
-import { LoginButton } from "./LoginButton";
+import { LoginButton } from "./components/LoginButton";
 import { QueryProvider } from "./providers/QueryProvider";
-import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,19 +21,20 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={`${inter.className} grid px-24 grid-cols-12 w-screen h-screen`}
+				className={`${inter.className} flex h-screen w-screen md:grid md:grid-cols-6 lg:grid-cols-12`}
 			>
 				<QueryProvider>
 					<AuthProvider>
-						<Toaster position="top-right" />
-						<Sidebar className="col-span-3 ml-24" />
-						<div className="col-span-6 border-gray-800 border-r-[0.5px] border-l-[0.5px]">
+						<Sidebar className="md:col-span-1 lg:col-span-3" />
+						<div className=" h-full w-full border-l-[0.5px] border-r-[0.5px] border-gray-800 md:col-span-5 md:max-w-2xl md:place-self-center lg:col-span-6">
 							{children}
 						</div>
-						<div className="col-span-3">
-							<div className="flex flex-col items-center text-center gap-2 p-4">
+						<div className="hidden md:block lg:col-span-3">
+							<div className="flex flex-col items-center gap-2 p-4 text-center ">
 								<LoginButton>
-									<h1 className="font-semibold text-2xl mb-2">New to twitter?</h1>
+									<h1 className="mb-2 text-2xl font-semibold">
+										New to twitter?
+									</h1>
 								</LoginButton>
 							</div>
 						</div>
