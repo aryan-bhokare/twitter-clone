@@ -7,6 +7,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { CgPoll } from "react-icons/cg";
 import { FiMoreHorizontal, FiUpload } from "react-icons/fi";
 import { Tweet } from "@/gql/graphql";
+import Link from "next/link";
 
 interface feedCardProps {
 	tweet: Tweet;
@@ -14,7 +15,7 @@ interface feedCardProps {
 
 const FeedCard: React.FC<feedCardProps> = ({ tweet }) => {
 	return (
-		<div className="grid grid-cols-12 p-4 gap-3 cursor-pointer border-b-[0.5px] border-gray-800 hover:bg-gray-900/20 transition-all">
+		<div className="grid cursor-pointer grid-cols-12 gap-3 border-b-[0.5px] border-gray-800 p-4 transition-all hover:bg-gray-900/20">
 			{tweet.author?.profileImageURL && (
 				<Image
 					src={tweet.author.profileImageURL}
@@ -25,16 +26,18 @@ const FeedCard: React.FC<feedCardProps> = ({ tweet }) => {
 				/>
 			)}
 			<div className="col-span-11 ">
-				<span className="float-right text-gray-600 py-1">
+				<span className="float-right py-1 text-gray-600">
 					<FiMoreHorizontal />
 				</span>
-				<span className="font-semibold">
-					{tweet.author?.firstName} {tweet.author?.lastName}
-				</span>
-				<span className="text-gray-600 mx-3">@{tweet.author?.firstName}</span>
+				<Link href={`/${tweet.author?.id}`}>
+					<span className="font-semibold">
+						{tweet.author?.firstName} {tweet.author?.lastName}
+					</span>
+				</Link>
+				<span className="mx-3 text-gray-600">@debarkamondal</span>
 				<div className="my-1">{tweet.content}</div>
 			</div>
-			<div className="col-span-11 col-start-2 flex justify-between items-center text-gray-600 text-xl">
+			<div className="col-span-11 col-start-2 flex items-center justify-between text-xl text-gray-600">
 				<span className="flex items-center gap-2">
 					<BiMessageRounded />
 					<span className="text-sm">652</span>

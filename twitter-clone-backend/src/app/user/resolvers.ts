@@ -65,6 +65,11 @@ const queries = {
             where: { id: context.user?.id },
         });
     },
+    getUserById: async (
+        parent: any,
+        { id }: { id: string },
+        context: GraphQLContext
+    ) => prismaClient.user.findUnique({ where: { id } }),
 };
 
 const extraResolvers = {
