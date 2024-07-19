@@ -5,6 +5,8 @@ import Sidebar from "./components/Sidebar";
 import { AuthProvider } from "./providers/AuthProvider";
 import { LoginButton } from "./components/LoginButton";
 import { QueryProvider } from "./providers/QueryProvider";
+import { Toaster } from "react-hot-toast";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +28,7 @@ export default function RootLayout({
 				<QueryProvider>
 					<AuthProvider>
 						<Sidebar className="md:col-span-1 lg:col-span-3" />
+						<Toaster position="bottom-center" />
 						<div className=" h-full w-full border-l-[0.5px] border-r-[0.5px] border-gray-800 md:col-span-5 md:max-w-2xl md:place-self-center lg:col-span-6">
 							{children}
 						</div>

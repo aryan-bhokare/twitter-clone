@@ -14,6 +14,8 @@ interface feedCardProps {
 }
 
 const FeedCard: React.FC<feedCardProps> = ({ tweet }) => {
+	// console.log(tweet);
+
 	return (
 		<div className="grid cursor-pointer grid-cols-12 gap-3 border-b-[0.5px] border-gray-800 p-4 transition-all hover:bg-gray-900/20">
 			{tweet.author?.profileImageURL && (
@@ -34,8 +36,13 @@ const FeedCard: React.FC<feedCardProps> = ({ tweet }) => {
 						{tweet.author?.firstName} {tweet.author?.lastName}
 					</span>
 				</Link>
-				<span className="mx-3 text-gray-600">@debarkamondal</span>
+				<span className="mx-3 text-gray-600">@aryan</span>
 				<div className="my-1">{tweet.content}</div>
+				{
+					tweet.imageURL && (
+						<Image src={tweet.imageURL} alt="image" width={400} height={400} />
+					)
+				}
 			</div>
 			<div className="col-span-11 col-start-2 flex items-center justify-between text-xl text-gray-600">
 				<span className="flex items-center gap-2">
