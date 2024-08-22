@@ -8,9 +8,9 @@ const s3Client = new S3Client(
     {
         credentials: {
             secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
-            accessKeyId: process.env.AWS_ACCESS_KEY || ''
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID || ''
         },
-        region: process.env.AWS_REGION
+        region: process.env.AWS_DEFAULT_REGION
     }
 );
 
@@ -27,7 +27,6 @@ const queries = {
         { ImgName, ImgType }: { ImgName: string; ImgType: string },
         ctx: GraphQLContext
     ) => {
-        console.log(process.env.AWS_ACCESS_KEY, process.env.AWS_SECRET_ACCESS_KEY, process.env.AWS_REGION)
         if (!ctx.user || !ctx.user.id)
             throw new Error("Your are not authorized to make this tweet");
         const allowedImgTypes = [

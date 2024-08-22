@@ -2,6 +2,11 @@
 import Image from "next/image";
 import React from "react";
 import { useGetUserById } from "../hooks/user";
+import { GetServerSideProps, NextPage } from "next";
+import { graphqlClient } from "@/clients/api";
+import { getUserByIdQuery } from "@/graphql/query/user";
+import { User } from "@/gql/graphql";
+
 
 const UserProfile = ({ id }: { id: string }) => {
     const { user } = useGetUserById(id);
@@ -40,3 +45,6 @@ const UserProfile = ({ id }: { id: string }) => {
 };
 
 export default UserProfile;
+
+
+
